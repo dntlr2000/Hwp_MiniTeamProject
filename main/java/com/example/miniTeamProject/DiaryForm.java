@@ -20,9 +20,12 @@ public class DiaryForm {
 
     public Diary toEntity() {
         return new Diary(id, title, content, emoji, wrDate);
+        
     }
 
     public void logInfo() {
         log.info("id: {}, title: {}, content: {}, emoji: {}", id, title, content, emoji);
     }
+
+
 }

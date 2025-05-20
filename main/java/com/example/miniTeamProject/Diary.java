@@ -11,6 +11,7 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @ToString
@@ -26,13 +27,18 @@ public class Diary {
     private String content;
     private String emoji;
     private String wrDate;
-    ;
+
 
     public Diary(Long id, String title, String content, String emoji, String wrDate) {
         this.title = title;
         this.content = content;
         this.emoji = emoji;
-        this.wrDate = wrDate;
+        //this.wrDate = wrDate;
+        if (wrDate == null || wrDate.isEmpty()) {
+            this.wrDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd"));
+        } else {
+            this.wrDate = wrDate;
+        }
     }
 
     public void logInfo() {
