@@ -30,6 +30,8 @@ public class Diary {
 
 
     public Diary(Long id, String title, String content, String emoji, String wrDate) {
+        this.id = id;
+
         this.title = title;
         this.content = content;
         this.emoji = emoji;
@@ -40,6 +42,8 @@ public class Diary {
             this.wrDate = wrDate;
         }
     }
+
+
 
     public void logInfo() {
         log.info("id: {}, title: {}, content: {}, emoji: {}, date: {}", id, title, content, emoji, wrDate);

@@ -13,14 +13,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DiaryForm {
     private Long id;
-    private String title;
-    private String content;
-    private String emoji;
+    private String title = "";
+    private String content = "";
+    private String emoji = "ㅁ";
     private String wrDate;
 
     public Diary toEntity() {
         return new Diary(id, title, content, emoji, wrDate);
-        
+
     }
 
     public void logInfo() {

@@ -3,9 +3,7 @@ package com.example.miniTeamProject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
@@ -25,9 +23,10 @@ public class DiaryController {
 
         model.addAttribute("diaryList", diaryList);
 
-        return "diaries/index";
+        return "index";
     }
 
+    /*
     @GetMapping("/add")
     public String addDiary(DiaryForm diaryForm) {
         diaryForm.logInfo();
@@ -37,8 +36,29 @@ public class DiaryController {
         Diary saved = diaryRepository.save(diary);
         saved.logInfo();
 
-        return "redirect: /diaries/" + saved.getId();
+        return "redirect:/diary/" + saved.getId();
     }
+    */
+    @GetMapping("/add")
+    public String showCreateForm(Model model) {
+        DiaryForm form = new DiaryForm();
+        /*
+        form.setTitle("");
+        form.setContent("");
+        form.setEmoji("😃");
+         */
+        model.addAttribute("diaryForm", form);
+        return "add";   // → templates/add.mustache
+    }
+
+    @PostMapping("/add")
+    public String create(DiaryForm diaryForm) {
+        Diary saved = diaryRepository.save(diaryForm.toEntity());
+        return "redirect:/diary/" + saved.getId();
+    }
+
+
+
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") Long id, Model model) {
@@ -48,7 +68,8 @@ public class DiaryController {
 
         model.addAttribute("diary", diary);
 
-        return "diaries/show";
+        //return "show";
+        return "redirect:/diary";
     }
 
     @GetMapping("/{id}/edit")
@@ -56,10 +77,11 @@ public class DiaryController {
         Diary diaryEntity = diaryRepository.findById(id).orElse(null);
         model.addAttribute("diary", diaryEntity);
 
-        return "diaries/edit";
+        return "edit";
     }
 
-    @GetMapping("/update")
+    //@GetMapping("/update")
+    @PostMapping("/update")
     public String update(DiaryForm diaryForm) {
         log.info(diaryForm.toString());
 
@@ -70,17 +92,18 @@ public class DiaryController {
         if (target != null) {
             diaryRepository.save(diary);
         }
-        return "redirect:/diaries/" + target.getId();
+        return "redirect:/diary/" + target.getId();
     }
 
-    @GetMapping("/{id}/delete")
-    public String delete(@PathVariable("id") Long id, RedirectAttributes rttr) {
+    //@GetMapping("/{id}/delete")
+    @PostMapping("/delete")
+    public String delete(@RequestParam("id") Long id, RedirectAttributes rttr) {
         Diary target = diaryRepository.findById(id).orElse(null);
 
         if (target != null) {
             diaryRepository.deleteById(id);
             rttr.addFlashAttribute("msg", "삭제되었습니다");
         }
-        return "redirect:/diaries";
+        return "redirect:/diary";
     }
 }

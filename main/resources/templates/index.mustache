@@ -1,8 +1,11 @@
 {{>layouts/header}}
 
-<h2>{{user.nickname}}님, 환영합니다!</h2>
-<a href="/diary/new" class="btn btn-primary">글 추가</a>
-<a href="/users/logout" class="btn btn-secondary">로그아웃</a>
+<!--
+<h2>{{!user.nickname}}님, 환영합니다!</h2>
+<a href="/users/logout" class="btn btn-secondary">로그아웃</a> -->
+
+
+<a href="/diary/add" class="btn btn-primary">글 추가</a>
 <hr>
 
 <table class="table">
@@ -10,9 +13,9 @@
   <tbody>
     {{#diaryList}}
     <tr>
-      <td>{{emotionIcon}}</td>
+      <td>{{emoji}}</td>
       <td><a href="/diary/{{id}}/edit">{{title}}</a></td>
-      <td>{{createdAt}}</td>
+      <td>{{wrDate}}</td>
     </tr>
     {{/diaryList}}
   </tbody>
