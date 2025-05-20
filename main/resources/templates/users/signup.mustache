@@ -1,0 +1,10 @@
+{{>layouts/header}}
+
+<form action="/users/signup" method="post">
+  <input name="username" placeholder="아이디" class="form-control mb-2">
+  <input name="password" placeholder="비밀번호" class="form-control mb-2">
+  <input name="nickname" placeholder="닉네임" class="form-control mb-2">
+  <button type="submit" class="btn btn-success">회원가입</button>
+</form>
+
+{{>layouts/footer}}
