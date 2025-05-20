@@ -1,0 +1,21 @@
+{{>layouts/header}}
+
+<form action="/diary/update" method="post">
+  <input type="hidden" name="id" value="{{id}}">
+  <input name="title" value="{{title}}" class="form-control mb-2">
+  <textarea name="content" class="form-control mb-2">{{content}}</textarea>
+  <select name="emotionIcon" class="form-select mb-2">
+    <option value="😃" {{#isHappy}}selected{{/isHappy}}>😃</option>
+    <option value="😢" {{#isSad}}selected{{/isSad}}>😢</option>
+    <option value="😠" {{#isAngry}}selected{{/isAngry}}>😠</option>
+    <option value="😨" {{#isFear}}selected{{/isFear}}>😨</option>
+  </select>
+  <button type="submit" class="btn btn-warning">수정</button>
+</form>
+
+<form action="/diary/delete" method="post" class="mt-2">
+  <input type="hidden" name="id" value="{{id}}">
+  <button type="submit" class="btn btn-danger">삭제</button>
+</form>
+
+{{>layouts/footer}}
