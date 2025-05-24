@@ -1,26 +1,28 @@
 {{>layouts/header}}
 
 {{#diary}}
-    <a href="/diary/{{id}}" class="btn btn-secondary mb-3">게시글로</a>
-
     <form action="/diary/update" method="post">
         <input type="hidden" name="id" value="{{id}}">
         <input name="title" value="{{title}}" class="form-control mb-2">
         <textarea name="content" class="form-control mb-2">{{content}}</textarea>
-        <select name="emoji" class="form-select mb-2">
-            <option value="😃" {{#isHappy}}selected{{/isHappy}}>😃</option>
-            <option value="😢" {{#isSad}}selected{{/isSad}}>😢</option>
-            <option value="😠" {{#isAngry}}selected{{/isAngry}}>😠</option>
-            <option value="😨" {{#isFear}}selected{{/isFear}}>😨</option>
-        </select>
+    <select name="emoji" class="form-select form-select-sm w-auto mb-2 float-end">
+        <option value="😃" {{#isHappy}}selected{{/isHappy}}>😃</option>
+        <option value="😢" {{#isSad}}  selected{{/isSad}}>😢</option>
+        <option value="😠" {{#isAngry}}selected{{/isAngry}}>😠</option>
+        <option value="😨" {{#isFear}} selected{{/isFear}}>😨</option>
+    </select>
         <input type="hidden" name="wrDate" value="">
         <button type="submit" class="btn btn-warning">수정</button>
     </form>
 
-    <form action="/diary/delete" method="post" class="mt-2">
+    <!-- onsubmit으로 삭제 전 확인창 띄우기 -->
+    <form action="/diary/delete" method="post" class="mt-2"
+          onsubmit="return confirm('정말 삭제하시겠습니까?');">
         <input type="hidden" name="id" value="{{id}}">
         <button type="submit" class="btn btn-danger">삭제</button>
     </form>
+
+    <a href="/diary/{{id}}" class="btn btn-secondary mb-3 float-end">게시글로</a>
 {{/diary}}
 
 {{>layouts/footer}}
