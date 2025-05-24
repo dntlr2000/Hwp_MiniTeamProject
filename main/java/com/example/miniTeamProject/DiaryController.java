@@ -68,8 +68,8 @@ public class DiaryController {
 
         model.addAttribute("diary", diary);
 
-        //return "show";
-        return "redirect:/diary";
+        return "show";
+        //return "redirect:/diary";
     }
 
     @GetMapping("/{id}/edit")

@@ -1,0 +1,21 @@
+{{>layouts/header}}
+{{#diary}}
+    <a href="/diary" class="btn btn-secondary mb-3">목록으로</a>
+
+    <!--<form action="/diary/update" method="post"> -->
+    <h1>제목 : {{title}}</h1>
+    <br>
+    <p>{{content}}</p>
+    <br>
+    <p>오늘의 기분 : {{emoji}} </p>
+    <!--</form>-->
+    <br>
+    <form action="/diary/delete" method="post" class="mt-2">
+        <input type="hidden" name="id" value="{{id}}">
+        <a href="/diary/{{id}}/edit" class="btn btn-warning">편집</a>
+        <!--<button type="submit" class="btn btn-warning">편집</button>
+        <button type="submit" class="btn btn-danger">삭제</button>
+        -->
+    </form>
+{{/diary}}
+{{>layouts/footer}}
