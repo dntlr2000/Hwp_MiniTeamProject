@@ -1,24 +1,39 @@
 {{>layouts/header}}
 
-<!--
-<h2>{{!user.nickname}}님, 환영합니다!</h2>
-<a href="/users/logout" class="btn btn-secondary">로그아웃</a> -->
+<div class="container py-4">
 
+    {{#loginUser}}
+        <!-- 로그인되어 있으면 인사말과 로그아웃 링크 -->
+        <div class="mb-3">
+            <h2>{{loginUser.nickname}}님, 환영합니다!</h2>
+            <a href="/users/logout" class="btn btn-secondary">로그아웃</a>
+        </div>
+        <hr>
+    {{/loginUser}}
 
-<a href="/diary/add" class="btn btn-primary">글 추가</a>
-<hr>
+    <!-- 글 추가 버튼 -->
+    <a href="/diary/add" class="btn btn-primary mb-3">글 추가</a>
+    <hr>
 
-<table class="table">
-  <thead><tr><th>오늘의 감정</th><th>제목</th><th>작성일</th></tr></thead>
-  <tbody>
-    {{#diaryList}}
-    <tr>
-      <td>{{emoji}}</td>
-      <td><a href="/diary/{{id}}">{{title}}</a></td>
-      <td>{{wrDate}}</td>
-    </tr>
-    {{/diaryList}}
-  </tbody>
-</table>
+    <!-- 일기 목록 테이블 -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">오늘의 감정</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#diaryList}}
+            <tr>
+                <td>{{emoji}}</td>
+                <td><a href="/diary/{{id}}">{{title}}</a></td>
+                <td>{{wrDate}}</td>
+            </tr>
+        {{/diaryList}}
+        </tbody>
+    </table>
+</div>
 
 {{>layouts/footer}}
