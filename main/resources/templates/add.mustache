@@ -1,21 +1,16 @@
 {{>layouts/header}}
-
 <h2>새 일기 작성</h2>
-
-<form action="/diary/add" method="post">
-    {{#diaryForm}}
-        <input  name="title"   value="{{title}}"   placeholder="제목"   class="form-control mb-2">
-        <textarea class = "form-control mb-2" name="content">{{content}}</textarea>
-        <select name="emoji">
-            <option value="😃" {{#isHappy}}selected{{/isHappy}}>😃</option>
-            <option value="😢" {{#isSad}}selected{{/isSad}}>😢</option>
-            <option value="😠" {{#isAngry}}selected{{/isAngry}}>😠</option>
-            <option value="😨" {{#isFear}}selected{{/isFear}}>😨</option>
-        </select>
-    {{/diaryForm}}
-    <input type="hidden" name="wrDate" value="">
+<form action="/diary/add" method="post" class="mb-3">
+    <input name="title" placeholder="제목" class="form-control mb-2"/>
+    <textarea name="content" placeholder="내용" class="form-control mb-2"></textarea>
+    <select name="emoji" class="form-select mb-2">
+        <option value="😃">😃</option>
+        <option value="😢">😢</option>
+        <option value="😠">😠</option>
+        <option value="😨">😨</option>
+    </select>
+    <input type="hidden" name="wrDate" value=""/>
     <button type="submit" class="btn btn-primary">추가</button>
 </form>
-<br>
-<a href="/diary" class="btn btn-secondary mb-3">목록으로</a>
+<a href="/diary" class="btn btn-secondary">목록으로</a>
 {{>layouts/footer}}
