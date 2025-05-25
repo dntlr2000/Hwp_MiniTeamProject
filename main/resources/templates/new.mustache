@@ -1,16 +1,16 @@
 {{>layouts/header}}
 
 <form action="/diary/add" method="post">
-    <input name="title" placeholder="제목" class="form-control mb-2">
-    <textarea name="content" placeholder="내용" class="form-control mb-2"></textarea>
-    <select name="emoji" class="form-select mb-2">
-        <option value="😃">😃</option>
-        <option value="😢">😢</option>
-        <option value="😠">😠</option>
-        <option value="😨">😨</option>
-    </select>
+  <input name="title" placeholder="제목" class="form-control mb-2">
+  <textarea name="content" placeholder="내용" class="form-control mb-2"></textarea>
+  <select name="emoji" class="form-select mb-2">
+    <option value="😃">😃</option>
+    <option value="😢">😢</option>
+    <option value="😠">😠</option>
+    <option value="😨">😨</option>
+  </select>
     <input type="hidden" name="wrDate" value="">
-    <button type="submit" class="btn btn-primary">추가</button>
+  <button type="submit" class="btn btn-primary">추가</button>
 </form>
 
 {{>layouts/footer}}

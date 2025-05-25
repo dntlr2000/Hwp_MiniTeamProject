@@ -3,30 +3,26 @@
 {{#diary}}
     <form action="/diary/update" method="post">
         <input type="hidden" name="id" value="{{id}}">
-
-        <div class="mb-3">
-            <label for="title" class="form-label">제목</label>
-            <input id="title" name="title" value="{{title}}" class="form-control">
-        </div>
-
-        <div class="mb-3">
-            <label for="content" class="form-label">내용</label>
-            <textarea id="content" name="content" class="form-control" rows="4">{{content}}</textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="emoji" class="form-label">오늘의 기분</label>
-            <select id="emoji" name="emoji" class="form-select w-auto">
-                <option value="😃" {{#isHappy}}selected{{/isHappy}}>😃 즐거워요</option>
-                <option value="😢" {{#isSad}}selected{{/isSad}}>😢 슬퍼요</option>
-                <option value="😠" {{#isAngry}}selected{{/isAngry}}>😠 화나요</option>
-                <option value="😨" {{#isFear}}selected{{/isFear}}>😨 무서워요</option>
-            </select>
-        </div>
-
-        <button type="submit" class="btn btn-warning">수정하기</button>
-        <a href="/diary/{{id}}" class="btn btn-secondary ms-2">취소</a>
+        <input name="title" value="{{title}}" class="form-control mb-2">
+        <textarea name="content" class="form-control mb-2">{{content}}</textarea>
+    <select name="emoji" class="form-select form-select-sm w-auto mb-2 float-end">
+        <option value="😃" {{#isHappy}}selected{{/isHappy}}>😃</option>
+        <option value="😢" {{#isSad}}  selected{{/isSad}}>😢</option>
+        <option value="😠" {{#isAngry}}selected{{/isAngry}}>😠</option>
+        <option value="😨" {{#isFear}} selected{{/isFear}}>😨</option>
+    </select>
+        <input type="hidden" name="wrDate" value="">
+        <button type="submit" class="btn btn-warning">수정</button>
     </form>
+
+    <!-- onsubmit으로 삭제 전 확인창 띄우기 -->
+    <form action="/diary/delete" method="post" class="mt-2"
+          onsubmit="return confirm('정말 삭제하시겠습니까?');">
+        <input type="hidden" name="id" value="{{id}}">
+        <button type="submit" class="btn btn-danger">삭제</button>
+    </form>
+
+    <a href="/diary/{{id}}" class="btn btn-secondary mb-3 float-end">게시글로</a>
 {{/diary}}
 
 {{>layouts/footer}}
