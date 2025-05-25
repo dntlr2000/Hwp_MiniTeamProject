@@ -1,14 +1,15 @@
 {{>layouts/header}}
 
+<h2>로그인</h2>
+{{#errorMessage}}
+    <div class="alert alert-danger">{{errorMessage}}</div>
+{{/errorMessage}}
 <form action="/users/login" method="post">
-  <input name="username" placeholder="아이디" class="form-control mb-2">
-  <input type="password" name="password" placeholder="비밀번호" class="form-control mb-2">
-  <button type="submit" class="btn btn-primary">로그인</button>
+    <div class="mb-3">
+        <label class="form-label">이메일</label>
+        <input type="email" name="username" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">로그인</button>
 </form>
-
-{{#error}}
-<p class="text-danger mt-2">로그인 실패! 다시 시도하세요.</p>
-<a href="javascript:history.back()">← 뒤로가기</a>
-{{/error}}
 
 {{>layouts/footer}}
