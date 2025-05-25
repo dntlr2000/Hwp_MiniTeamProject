@@ -1,10 +1,16 @@
 {{>layouts/header}}
 
+<h2>회원가입</h2>
 <form action="/users/signup" method="post">
-  <input name="username" placeholder="아이디" class="form-control mb-2">
-  <input name="password" placeholder="비밀번호" class="form-control mb-2">
-  <input name="nickname" placeholder="닉네임" class="form-control mb-2">
-  <button type="submit" class="btn btn-success">회원가입</button>
+    <div class="mb-3">
+        <label class="form-label">이메일</label>
+        <input type="email" name="username" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">닉네임</label>
+        <input type="text" name="nickname" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">회원가입</button>
 </form>
 
 {{>layouts/footer}}
