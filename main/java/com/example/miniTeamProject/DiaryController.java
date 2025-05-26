@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
+import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
 
@@ -18,7 +19,12 @@ public class DiaryController {
 
     //목록 페이지
     @GetMapping("")
-    public String list(Model model) {
+    public String list(Model model, HttpSession session) {
+        // 1) 세션에서 로그인한 User 꺼내기
+        User loginUser = (User) session.getAttribute("loginUser");
+        // 2) 뷰에 loginUser 로 전달
+        model.addAttribute("loginUser", loginUser);
+
         List<Diary> diaryList = diaryRepository.findAll();
 
         model.addAttribute("diaryList", diaryList);
@@ -26,27 +32,9 @@ public class DiaryController {
         return "index";
     }
 
-    /*
-    @GetMapping("/add")
-    public String addDiary(DiaryForm diaryForm) {
-        diaryForm.logInfo();
-        Diary diary = diaryForm.toEntity();
-        diary.logInfo();
-
-        Diary saved = diaryRepository.save(diary);
-        saved.logInfo();
-
-        return "redirect:/diary/" + saved.getId();
-    }
-    */
     @GetMapping("/add")
     public String showCreateForm(Model model) {
         DiaryForm form = new DiaryForm();
-        /*
-        form.setTitle("");
-        form.setContent("");
-        form.setEmoji("😃");
-         */
         model.addAttribute("diaryForm", form);
         return "add";   // → templates/add.mustache
     }
@@ -56,8 +44,6 @@ public class DiaryController {
         Diary saved = diaryRepository.save(diaryForm.toEntity());
         return "redirect:/diary/" + saved.getId();
     }
-
-
 
 
     @GetMapping("/{id}")
@@ -80,7 +66,6 @@ public class DiaryController {
         return "edit";
     }
 
-    //@GetMapping("/update")
     @PostMapping("/update")
     public String update(DiaryForm diaryForm) {
         log.info(diaryForm.toString());
