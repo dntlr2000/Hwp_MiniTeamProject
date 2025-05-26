@@ -15,7 +15,7 @@ public class DiaryForm {
     private Long id;
     private String title = "";
     private String content = "";
-    private String emoji = "ㅁ";
+    private String emoji = "ㅁ"; //null값 입력 방지 차 임시로 넣어둔 값
     private String wrDate;
 
     public Diary toEntity() {

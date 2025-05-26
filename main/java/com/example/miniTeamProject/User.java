@@ -17,5 +17,5 @@ public class User {
 
     private String username;  // 이메일
     private String nickname;
-    private String password;
+    private String password; //미구현
 }

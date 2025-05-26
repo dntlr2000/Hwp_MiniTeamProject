@@ -32,27 +32,9 @@ public class DiaryController {
         return "index";
     }
 
-    /*
-    @GetMapping("/add")
-    public String addDiary(DiaryForm diaryForm) {
-        diaryForm.logInfo();
-        Diary diary = diaryForm.toEntity();
-        diary.logInfo();
-
-        Diary saved = diaryRepository.save(diary);
-        saved.logInfo();
-
-        return "redirect:/diary/" + saved.getId();
-    }
-    */
     @GetMapping("/add")
     public String showCreateForm(Model model) {
         DiaryForm form = new DiaryForm();
-        /*
-        form.setTitle("");
-        form.setContent("");
-        form.setEmoji("😃");
-         */
         model.addAttribute("diaryForm", form);
         return "add";   // → templates/add.mustache
     }
@@ -62,8 +44,6 @@ public class DiaryController {
         Diary saved = diaryRepository.save(diaryForm.toEntity());
         return "redirect:/diary/" + saved.getId();
     }
-
-
 
 
     @GetMapping("/{id}")
@@ -86,7 +66,6 @@ public class DiaryController {
         return "edit";
     }
 
-    //@GetMapping("/update")
     @PostMapping("/update")
     public String update(DiaryForm diaryForm) {
         log.info(diaryForm.toString());

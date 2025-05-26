@@ -45,13 +45,13 @@ public class DiaryApiController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<Diary> delete(@PathVariable("id")Long id) {
-        //1.대상 찾기
+        // 대상 찾기
         Diary target = diaryRepository.findById(id).orElse(null);
 
-        //2.잘못된 요청 처리하기
+        // 잘못된 요청 처리
         if (target == null) return ResponseEntity.badRequest().build();
 
-        //3.대상 삭제하기
+        // 대상 삭제
         diaryRepository.deleteById(id);
 
         return ResponseEntity.ok(null);
